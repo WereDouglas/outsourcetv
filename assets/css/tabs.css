@@ -1,0 +1,64 @@
+
+
+.tabs-links {
+	position: relative;
+	z-index: 5;
+}
+
+
+
+ul.tabs {
+	margin: 0;
+	padding: 0;
+	/*float: left;*/
+	list-style: none;
+	/*height: 32px;*/ /*--Set height of tabs--*/
+	/*width: 100%;*/
+	display: block;
+	overflow: hidden;
+}
+
+ul.tabs li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	/*height: 31px;*/ /*--Subtract 1px from the height of the unordered list--*/
+	/*line-height: 31px;*/ /*--Vertically aligns the text within the tab--*/
+	border: thin solid #CCCCCC;
+	border-bottom: thin solid #FFFFFF;
+	margin-right:5px;
+	margin-bottom: -1px; /*--Pull the list item down 1px--*/
+	position: relative;	
+}
+
+ul.tabs li a {
+	text-decoration: none;
+	display: inline-block;
+	padding: 5px 20px;
+	/*border: 1px solid #fff; /*--Gives the bevel look with a 1px white border inside the list item--*/
+	outline: none;
+	background-color: #DDDDDD;
+}
+
+ul.tabs li a:hover {
+	background: #CCCCCC;
+}
+
+html ul.tabs li.active, 
+html ul.tabs li.active a:hover, 
+html ul.tabs li.active a  { /*--Makes sure that the active tab does not listen to the hover properties--*/
+	background: #FFFFFF; /*--Makes the active tab look like it's connected with its content--*/
+}
+
+
+/*=============== Tab Content =============*/
+
+.tab-container {
+	border: thin solid #CCCCCC;
+}
+
+.tab-content {
+	margin: 10px;
+}
+
+
