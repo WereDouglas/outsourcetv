@@ -6,6 +6,7 @@
 <!-- end: CSS -->
 
 <link id="base-style-responsive" href="<?php echo base_url(); ?>css/mine.css" rel="stylesheet">
+<link id="base-style-responsive" href="<?php echo base_url(); ?>css/table.css" rel="stylesheet">
 
 <?php echo $this->session->flashdata('msg'); ?>
 <div class="row-fluid">
@@ -123,7 +124,7 @@
 				
 				
 					<div class="box-content">
-                                            <table class="table table-striped table-bordered bootstrap-datatable datatable" id="datatable">
+                                            <table class="jobs table table-striped table-bordered bootstrap-datatable datatable" id="datatable">
 						  <thead>
 							  <tr>  <th></th>
 								  <th>E-mail</th>

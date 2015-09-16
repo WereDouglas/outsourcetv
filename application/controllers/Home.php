@@ -17,12 +17,16 @@ class Home extends CI_Controller {
     public function index() {
         
         $query = $this->Md->query("SELECT * FROM user");
-
+        $data['users'] = array();
+        $data['services'] = array();
         if ($query) {
             $data['users'] = $query;
-        } else {
-            $data['users'] = array();
         }
+        $query = $this->Md->query("SELECT * FROM service");
+
+        if ($query) {
+            $data['services'] = $query;
+        } 
 
         $this->load->view('pages/home',$data);
     }

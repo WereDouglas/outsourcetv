@@ -15,6 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/reset.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/tabs.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/table.css" />
 
 	<!--Javascript Library and Plugins-->
 	<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-1.11.3.min.js"></script>
@@ -49,6 +50,13 @@
 						<li class="headlink page-services">
 							<a href="<?php echo base_url(); ?>index.php/home/services">Service Directory</a>
 							<ul class="sub-menu">
+                                                               <?php
+                                                    
+                                                        foreach ($services as $loop) {                                                           
+                                                       ?> 
+                                                            <li><a href="<?php echo base_url(); ?>index.php/home/services/camera-crew">Camera Crew</a></li>
+							
+                                                           <?php }?>
 								<li><a href="<?php echo base_url(); ?>index.php/home/services/camera-crew">Camera Crew</a></li>
 								<li><a href="<?php echo base_url(); ?>index.php/home/services/equipment-hire">Equipment Hire</a></li>
 								<li><a href="<?php echo base_url(); ?>index.php/home/services/outside-broadcast-facility">Outside Broadcast Facility</a></li>
@@ -59,17 +67,17 @@
 						<li class="headlink page-contact"><a href="<?php echo base_url(); ?>index.php/home/contact">Contact us</a></li>
 
 
-						<?php //if (isset($user_pages) && $user_pages == 'logged_in') { ?>
+						<?php if ($this->session->userdata('logged_in')) { ?>
 						<li class="headlink page-user">
 							<a href="<?php echo base_url(); ?>index.php/user">My Profile</a>
 							<ul class="sub-menu">
 								<li><a href="<?php echo base_url(); ?>index.php/user/service">Create Service</a></li>
 								<li><a href="<?php echo base_url(); ?>index.php/user/job">Create Job</a></li>
 								<li><a href="<?php echo base_url(); ?>index.php/user/item">Add Item</a></li>
-								<li><a href="<?php echo base_url(); ?>index.php/user/login">Log Out</a></li>
+								<li><a href="<?php echo base_url(); ?>index.php/user/logout">Log Out</a></li>
 							</ul>
 						</li>
-						<?php //} ?>
+						<?php } ?>
 
 
 					</ul>

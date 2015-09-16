@@ -34,13 +34,13 @@
                                              <div class="control-group">
                                         <label class="control-label" for="focusedInput">E-mail</label>
                                         <div class="controls">
-                                            <input class="focused" name="email" id="email"  type="text">
+                                            <input class="focused form-element" name="email" id="email"  type="text">
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <label class="control-label" for="fileInput">File input</label>
                                         <div class="controls">
-                                            <input class="input-file uniform_on" id="imgfile" name="imgfile" type="file">
+                                            <input class="input-file uniform_on form-element" id="imgfile" name="imgfile" type="file">
                                         </div>
                                         <img id="preview"  width=150px" height="150px" src="<?= base_url(); ?>img/placeholder.jpg" alt=" Your profile passport image" />
 
@@ -50,19 +50,19 @@
                                           <div class="control-group">
                                         <label class="control-label">Username</label>
                                         <div class="controls">
-                                            <input class="focused" id="username" name="username" type="text" >
+                                            <input class="focused form-element" id="username" name="username" type="text" >
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <label class="control-label">First name</label>
                                         <div class="controls">
-                                            <input class="focused" id="fname" name="fname" type="text" >
+                                            <input class="focused form-element" id="fname" name="fname" type="text" >
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <label class="control-label">Last name</label>
                                         <div class="controls">
-                                            <input class="focused" id="lname" name="lname" type="text">
+                                            <input class="focused form-element" id="lname" name="lname" type="text">
                                         </div>
                                     </div>
                                         
@@ -72,7 +72,7 @@
                                            <div class="control-group">
                                         <label class="control-label" for="selectError3">User type</label>
                                         <div class="controls">
-                                            <select id="type" name="type">                                               
+                                            <select class="form-element" id="type" name="type">                                               
                                                 <option>Member</option>
 
                                             </select>

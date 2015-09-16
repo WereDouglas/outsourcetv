@@ -14,6 +14,11 @@ class User extends CI_Controller {
         date_default_timezone_set("Africa/Nairobi");
     }
 
+    public function logout() {
+        $this->session->sess_destroy();
+        redirect('home', 'refresh');
+    }
+
     public function index() {
 
         $query = $this->Md->query("SELECT * FROM user");
@@ -29,33 +34,139 @@ class User extends CI_Controller {
 
     public function service() {
 
-        $query = $this->Md->query("SELECT * FROM user");
+        $query = $this->Md->query("SELECT * FROM service");
 
         if ($query) {
-            $data['users'] = $query;
+            $data['services'] = $query;
         } else {
-            $data['users'] = array();
+            $data['services'] = array();
         }
+        $query = $this->Md->query("SELECT * FROM memberservice WHERE userID='".$this->session -> userdata('id')."'");
+
+        if ($query) {
+            $data['serv'] = $query;
+        } else {
+            $data['serv'] = array();
+        }
+        
 
         $this->load->view('pages/user-add-service', $data);
     }
 
-    public function item() {
+    public function create_service() {
 
-        $query = $this->Md->query("SELECT * FROM user");
+
+        $this->load->helper(array('form', 'url'));
+        $userID = $this->session -> userdata('id');
+        $company = $this->input->post('company');
+        $contact = $this->input->post('contact');
+        $country = $this->input->post('country');
+        $telephone = $this->input->post('telephone');
+        $email = $this->input->post('email');
+        $website = $this->input->post('website');
+        $details = $this->input->post('details');
+        $service = $this->input->post('service');
+        $active = 'false';
+
+        $created = date('Y-m-d');
+
+        $services = array('company' => $company,'userID'=>$userID, 'contact' => $contact, 'country' => $country, 'telephone' => $telephone, 'email' => $email, 'website' => $website, 'details' => $details, 'service' => $service, 'active' => $active, 'created' => date('Y-m-d H:i:s'));
+        $id = $this->Md->save($services, 'memberservice');
+        if ($id) {
+            $this->session->set_flashdata('msg', '<div class="alert alert-error">     
+                                                <strong>
+                                                information submitted	</strong>									
+						</div>');
+
+            redirect('home', 'refresh');
+            return;
+        } else {
+            unlink($data['full_path']);
+            $this->session->set_flashdata('msg', '<div class="alert alert-error">
+                                                   
+                                                <strong>
+                                               Error submitting	</strong>									
+						</div>');
+            redirect('home', 'refresh');
+            return;
+        }
+
+        @unlink($_FILES[$file_element_name]);
+        redirect('home', 'refresh');
+        return;
+    }
+     public function create_job() {
+
+
+        $this->load->helper(array('form', 'url'));
+        $userID = $this->session -> userdata('id');
+        $type = $this->input->post('type');
+        $title = $this->input->post('title');       
+        $details = $this->input->post('details');
+       
+
+        $created = date('Y-m-d');
+
+        $jobs = array('userID'=>$userID,'type' => $type, 'title' => $title, 'details' => $details,'created' => date('Y-m-d H:i:s'));
+        $id = $this->Md->save($jobs, 'memberjob');
+        if ($id) {
+            $this->session->set_flashdata('msg', '<div class="alert alert-error">     
+                                                <strong>
+                                                information submitted	</strong>									
+						</div>');
+
+            redirect('home/jobs', 'refresh');
+            return;
+        } else {
+          
+            $this->session->set_flashdata('msg', '<div class="alert alert-error">   
+                                                <strong>
+                                               Error submitting	</strong>									
+						</div>');
+            redirect('home', 'refresh');
+            return;
+        }       
+        redirect('home/jobs', 'refresh');
+        return;
+    }
+
+
+    public function item() {
+              $query = $this->Md->query("SELECT * FROM transaction");
 
         if ($query) {
-            $data['users'] = $query;
+            $data['trans'] = $query;
         } else {
-            $data['users'] = array();
+            $data['trans'] = array();
+        }
+        $query = $this->Md->query("SELECT * FROM equipment");
+
+        if ($query) {
+            $data['equip'] = $query;
+        } else {
+            $data['equip'] = array();
         }
 
         $this->load->view('pages/user-add-item', $data);
     }
 
     public function job() {
+         $query = $this->Md->query("SELECT * FROM service");
 
-        $this->load->view('pages/user-add-job', $data);
+        if ($query) {
+            $data['services'] = $query;
+        } else {
+            $data['services'] = array();
+        }
+        $query = $this->Md->query("SELECT * FROM memberjob");
+
+        if ($query) {
+            $data['jobs'] = $query;
+        } else {
+            $data['jobs'] = array();
+        }
+
+        $this->load->view('pages/user-add-job',$data);
     }
 
     public function create() {
@@ -124,48 +235,95 @@ class User extends CI_Controller {
         redirect('user', 'refresh');
         return;
     }
+    
+     public function create_item() {
+
+
+        $this->load->helper(array('form', 'url'));
+        $file_element_name = 'imgfile';
+        $config['upload_path'] = 'uploads';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['encrypt_name'] = FALSE;
+        $this->load->library('upload', $config);
+        // $this->upload->initialize($config);
+        if (!$this->upload->do_upload($file_element_name)) {
+            $status = 'error';
+            $msg = $this->upload->display_errors('', '');
+            $this->session->set_flashdata('msg', '<div class="alert alert-error">                                                  
+                                                <strong>' . $msg . ' </strong>									
+						</div>');
+        }
+        $data = $this->upload->data();
+        $transaction = $this->input->post('transaction');
+        $price = $this->input->post('price');       
+        $details = $this->input->post('details');
+        $userID = $this->session -> userdata('id');       
+        $created = date('Y-m-d');        
+        $file = $data['file_name'];
+        
+        $items = array('image' => $file, 'transaction' => $transaction, 'userID'=>$userID,'price' => $price, 'details' => $details, 'created' => date('Y-m-d H:i:s'));
+        $id = $this->Md->save($items, 'equipment');
+        if ($id) {
+            $this->session->set_flashdata('msg', '<div class="alert alert-error">
+                                                   
+                                                <strong>
+                                                Registration successful please continue to login</strong>									
+						</div>');
+
+            redirect('home/item', 'refresh');
+            return;
+        } else {
+            unlink($data['full_path']);
+            $this->session->set_flashdata('msg', '<div class="alert alert-error">
+                                                   
+                                                <strong>
+                                               Error submitting	</strong>									
+						</div>');
+             redirect('user/item', 'refresh');
+            return;
+        }
+
+        @unlink($_FILES[$file_element_name]);
+       redirect('user/item', 'refresh');
+        return;
+    }
 
     public function login() {
 
-
+        echo $this->encrypt->decode('VomeUe66JTeQ09Z7zGCh0jXlYJJf6d6BMbCz3Ot5gHKaMLOJ5V', $this->input->post('email'));
         $this->load->helper(array('form', 'url'));
 
         $email = $this->input->post('email');
         $password_now = $this->input->post('password');
-        echo  $key = $email;
-
+        echo $key = $email;
+        // $password_now= $this->encrypt->encode($password,$email);
 
         $result = $this->Md->query("SELECT * FROM user WHERE email='" . $email . "'");
         if (count($result) > 0) {
 
             var_dump($result);
             foreach ($result as $res) {
-              echo ' '.$res->password;
-                echo ' '.$res->email;
+                echo $DBpass = $res->password;
                 echo '<br>';
-                 echo  $passworded = $this->encrypt->decode($res->password,$res->email);
-                
-                echo $passworded . ' is equal ' . $password_now;
+                echo $DBemail = $res->email;
+                echo '<br>';
+                echo $DBnew = $this->encrypt->decode($DBpass, $DBemail);
+                echo $password_now . ' is equal to ' . $DBnew . '<br>';
+
+
+                $newdata = array(
+                    'id' => $res->id,
+                    'name' => $res->fname . ' ' . $res->lname . ' ',
+                    'email' => $res->email,
+                    'type' => $res->type,
+                    'username' => $res->username,
+                    'image' => $res->image,
+                    'active' => $res->active,
+                    'logged_in' => TRUE
+                );
+                $this->session->set_userdata($newdata);
+                redirect('home', 'refresh');
                 return;
-                if ($password_now == $passworded) {
-                    $newdata = array(
-                        'id' => $res->id,
-                        'name' => $res->fname.' '.$res->lname.' ',
-                        'email' => $res->email,
-                        'type' => $res->type,
-                        'username' => $res->username,
-                        'image' => $res->image,
-                        'active' => $res->active,
-                        'logged_in' => TRUE
-                    );
-                    $this->session->set_userdata($newdata);
-                    redirect('home', 'refresh');
-                    return;
-                } else {
-                    $this->session->set_flashdata('msg', '<div class="alert alert-error"> <strong>! invalid password</strong></div>');
-                    redirect('home/login', 'refresh');
-                    return;
-                }
             }
         } else {
             $this->session->set_flashdata('msg', '<div class="alert alert-error"> <strong>! invalid password</strong></div>');
