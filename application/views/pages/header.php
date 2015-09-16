@@ -54,13 +54,10 @@
                                                     
                                                         foreach ($services as $loop) {                                                           
                                                        ?> 
-                                                            <li><a href="<?php echo base_url(); ?>index.php/home/services/camera-crew">Camera Crew</a></li>
+                                                            <li><a href="<?php echo base_url(); ?>index.php/home/thisservice/<?=$loop->name?>"><?=$loop->name?></a></li>
 							
                                                            <?php }?>
-								<li><a href="<?php echo base_url(); ?>index.php/home/services/camera-crew">Camera Crew</a></li>
-								<li><a href="<?php echo base_url(); ?>index.php/home/services/equipment-hire">Equipment Hire</a></li>
-								<li><a href="<?php echo base_url(); ?>index.php/home/services/outside-broadcast-facility">Outside Broadcast Facility</a></li>
-							</ul>
+									</ul>
 						</li>
 						<li class="headlink page-equipment"><a href="<?php echo base_url(); ?>index.php/home/equipment">Equipment</a></li>
 						<li class="headlink page-about"><a href="<?php echo base_url(); ?>index.php/home/about">About Us</a></li>

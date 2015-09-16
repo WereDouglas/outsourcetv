@@ -146,6 +146,13 @@ class User extends CI_Controller {
         } else {
             $data['equip'] = array();
         }
+        $query = $this->Md->query("SELECT * FROM service");
+
+        if ($query) {
+            $data['services'] = $query;
+        } else {
+            $data['services'] = array();
+        }
 
         $this->load->view('pages/user-add-item', $data);
     }
