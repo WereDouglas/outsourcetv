@@ -15,21 +15,25 @@
 
 									<section class="content-section content-section-page-title">
 										<div class="padding">
-											<h3 class="page-title">Service Directory</h3>
+											<h3 class="page-title"><?php echo $service.' '?>Service Directory</h3>
 										</div><!-- /padding -->
 									</section><!-- /content-section -->
 
 
-   <?php   foreach ($services as $loop) {    ?> 
+   <?php// var_dump($memberservices);   ?> 
                                                        	<section class="content-section content-section">
 										<div class="content-section-block">
 											<div class="padding">
-												<h3><?=$loop->name?><span class="read-more-link"><a href="<?php echo base_url(); ?>index.php/services/<?=$loop->name?>">View More</a></span></h3>
+												
 												<ul class="news-list columns-two">
-                                                                                                    <?php  foreach ($memberservices as $loop2) {  if($loop2->service == $loop->name){   ?> 
-                                                            <li><a href="#"><span><?=$loop2->country?></span> <?=$loop2->details.' Created on:'.$loop2->created.' Contact:'.$loop2->contact.' Website:'.$loop2->website;?></a></li>
-													
-                                                                                                    <?php }}?>
+                                                                                                   
+                                                                                                    <?php  foreach ($memberservices as $loop2){  ?> 
+                                                                                                   
+                                                                                                    <li>  <div class="profile-image" style="margin-right:10px;">
+                                                                                            <img height="88px" width="84px" src="<?php echo base_url(); ?>uploads/<?=$loop2->image;?>">
+											</div><a href="#"><span><?=$loop2->country?></span> <?=$loop2->details.' Created on:'.$loop2->created.' Contact:'.$loop2->contact.' Website:'.$loop2->website;?></a></li>
+												<p> </p>	
+                                                                                                    <?php }?>
                                                                                                     
                                                                                                     
                                                                                                     
@@ -38,7 +42,7 @@
 										</div><!-- /content-section-block -->
 									</section><!-- /content-section -->
 
-                                                           <?php }?>  
+                                                    
 
 
 
@@ -46,7 +50,7 @@
 								</div><!-- /padding -->
 							</div><!-- /content-main -->
 
-						 <?php require_once(APPPATH . 'views/pages/adsblock.php'); ?>
+							 <?php require_once(APPPATH . 'views/pages/adsblock.php'); ?>
 
 
 						</div><!-- /content-block-inner -->

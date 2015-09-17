@@ -17,9 +17,6 @@
 										</div><!-- /padding -->
 									</section><!-- /content-section -->
 
-
-
-
 									<section class="content-section content-section">
 										<div class="content-section-block content-section-block-news one">
 											<div class="padding">
@@ -68,10 +65,13 @@
 												<div class="content-contact-wrapper">
 													<div class="content-contact-details">
 														<ul>
-															<li>Address: P.O Box 36279, Kampala (U)</li>
-															<li>Kampala Serena Conference Center, Suite 04,</li>
-															<li>Phone: +256 414 661 934</li>
-															<li>Email: info@outsoucetv.com</li>
+                                                                                                                     <?php  foreach ($contacts as $loop) {    ?> 
+                                                                                                                         <li><?=$loop->line1;?></li>
+                                                                                                                           <li><?=$loop->line2;?></li>
+                                                                                                                             <li><?=$loop->line3;?></li>
+                                                                                                                                <li><?=$loop->line4;?></li>
+                                                                                                                         <?php }?>
+															
 														</ul>
 													</div><!-- /content-contact-details -->
 												</div><!-- /content-contact-wrapper -->
@@ -99,7 +99,7 @@
 								</div><!-- /padding -->
 							</div><!-- /content-main -->
 
-							<?php $this->load->view('templates/adsblock'); ?>
+						  <?php require_once(APPPATH . 'views/pages/adsblock.php'); ?>
 
 						</div><!-- /content-block-inner -->
 					</div><!-- /content-block -->

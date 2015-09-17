@@ -85,7 +85,8 @@
                                                                 <th><?= $loop->details ?></th>
 
                                                                 <th><?= $loop->created ?></th>
-                                                                <th></th>
+                                                                <th>  <a class="btn btn-danger" href="<?php echo base_url() . "index.php/user/delete/memberjob/" .$loop->id; ?>">
+                                                                                    <i class="halflings-icon white trash">Remove</i> </a></th>
                                                             </tr>
                                                             <?php
                                                         }

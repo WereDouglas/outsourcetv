@@ -44,7 +44,7 @@
                                     <div class="span4">
                                           
                                     <div class="control-group">
-                                        <label class="control-label" for="fileInput">File input</label>
+                                        <label class="control-label" for="fileInput">Image input(Banner 628H X 273W)(Advertisement 328HX265W)</label>
                                         <div class="controls">
                                             <input class="input-file uniform_on" id="imgfile" name="imgfile" type="file">
                                         </div>

@@ -8,7 +8,7 @@
             <div class="content-block content-block-content">
                 <div class="content-block-inner">
 
-                    <?php $this->load->view('pages/profilesblock'); ?>
+                    <?php require_once(APPPATH . 'views/pages/profilesblock.php'); ?>
 
                     <div class="content-main">
                         <div class="padding">
@@ -16,8 +16,11 @@
                             <section class="content-section content-section-one slideshow">
                                 <div class="padding">
                                     <div id="show" class="slideshow-wrapper">
-                                        <img src="<?php echo base_url(); ?>assets/images/slide-image-001.jpg">
-                                        <img src="<?php echo base_url(); ?>assets/images/slide-image-002.jpg">
+                                         <?php  foreach ($banners as $loop) { if ($loop->type =='Banner'){   ?>
+                                        <img  height="273px" width="628px" src="<?php echo base_url(); ?>uploads/<?=$loop->image?>">
+                                      
+ <?php } }?>
+                                         <img src="<?php echo base_url(); ?>assets/images/slide-image-002.jpg">
                                         <img src="<?php echo base_url(); ?>assets/images/slide-image-003.jpg">
                                     </div><!-- /slideshow-wrapper -->
                                     <div class="slide-nav-controls">
@@ -37,29 +40,30 @@
                                     <div class="padding">
                                         <h3>News Events<span class="read-more-link"><a href="#">Read More</a></span></h3>
                                         <ul class="news-list">
-                                            <li><a href="#"><span class="news-date">01.08.2015</span> President Y.K. Museveni picks forms</a></li>
-                                            <li><a href="#"><span class="news-date">01.08.2015</span> Obama in Kenya.</a></li>
-                                            <li><a href="#"><span class="news-date">01.08.2015</span> The Siria War.</a></li>
-                                            <li><a href="#"><span class="news-date">01.08.2015</span> President Y.K. Museveni picks forms</a></li>
-                                            <li><a href="#"><span class="news-date">01.08.2015</span> Obama in Kenya.</a></li>
-                                            <li><a href="#"><span class="news-date">02.08.2015</span> The Siria War.</a></li>
-                                        </ul>
+                                            
+                                             <?php  foreach ($news as $loop) {    ?>
+  <li><a href="#"><span class="news-date"><?=$loop->created?></span><?=$loop->heading?></a></li>
+                                          
+                                      
+ <?php } ?>
+                                               </ul>
                                     </div><!-- /padding -->
                                 </div><!-- /content-section-block -->
 
 
                                 <div class="content-section-block content-section-block-jobs two">
                                     <div class="padding">
-                                        <h3>Jobs<span class="read-more-link"><a href="#">Read More</a></span></h3>
+                                        <h3>Jobs<span class="read-more-link"><a href="<?php echo base_url(); ?>index.php/home/jobs">Read More</a></span></h3>
                                         <ul class="jobs-list bulleted">
-                                            <li><a href="#">Camera Man Needed</a></li>
-                                            <li><a href="#">Graphics Editor</a></li>
-                                            <li><a href="#">News Intern Needed</a></li>
-                                            <li><a href="#">News Editor</a></li>
-                                            <li><a href="#">Journalist with skills in</a></li>
+                                              <?php  foreach ($jobs as $loop) {    ?> 
+                                                   <li><a href="#"><?=$loop->title?></a></li>
+                                                  <?php }?>
+                                         
                                         </ul>
                                         <div>
-                                            <a class="button" href="#">Add Job</a>
+                                            <?php if ($this->session->userdata('logged_in')) { ?>
+                                            <a class="button" href="<?php echo base_url(); ?>index.php/user/job">Add Job</a>
+                                            <?php }?>
                                         </div>
                                     </div><!-- /padding -->
                                 </div><!-- /content-section-block -->
@@ -71,17 +75,14 @@
 
                                 <div class="content-section-block content-section-block-services one">
                                     <div class="padding">
-                                        <h3>Service Directory<span class="read-more-link"><a href="#">Read More</a></span></h3>
+                                        <h3>Service Directory<span class="read-more-link"><a href="<?php echo base_url(); ?>index.php/home/service">Read More</a></span></h3>
                                         <ul class="services-list bulleted">
-                                            <li><a href="#">Jobs</a></li>
-                                            <li><a href="#">Camera Crew</a></li>
-                                            <li><a href="#">Equipment Hire</a></li>
-                                            <li><a href="#">Equipmet Sale</a></li>
-                                            <li><a href="#">Outside Broadcast Facilities</a></li>
-                                            <li><a href="#">SNG Uplink Providers</a></li>
-                                            <li><a href="#">Cellular Uplink</a></li>
-                                            <li><a href="#">Equipmet Sale</a></li>
-                                            <li><a href="#">IP streaming</a></li>
+                                          <?php   foreach ($services as $loop) {    ?> 
+                                                            <li><a href="<?php echo base_url(); ?>index.php/home/thisservice/<?=$loop->name?>"><?=$loop->name?></a></li>
+							
+                                                           <?php }?>  
+                                            
+                                            
                                         </ul>
                                     </div><!-- /padding -->
                                 </div><!-- /content-section-block -->
@@ -89,64 +90,30 @@
 
                                 <div class="content-section-block content-section-block-sale two">
                                     <div class="padding">
-                                        <h3>Equipment for Sale<span class="read-more-link"><a href="#">Read More</a></span></h3>
+                                        <h3>Equipment for Sale<span class="read-more-link"><a href="<?php echo base_url(); ?>index.php/home/equipment">Read More</a></span></h3>
                                         <ul id="news" class="sale-list">
-                                            <li>
-                                                <div class="product-item">
+                                                            <?php  foreach ($equipments as $loop) {    ?> 
+                                                          	<li>
+                                                                     <div class="product-item">
                                                     <div class="product-item-image">
-                                                        <img src="<?php echo base_url(); ?>assets/images/sale-image-001.png">
+                                                        <img src="<?php echo base_url(); ?>uploads/<?=$loop->picture?>">
                                                     </div><!-- /product-item-image -->
 
                                                     <div class="product-item-content">
-                                                        <span class="product-item-content-name">Sony HDV</span>
-                                                        <span class="product-item-content-specs">Battery, Flashlight...</span>
-                                                        <span class="product-item-content-price">USD 480</span>
+                                                        <span class="product-item-content-name"><?=$loop->name?></span>
+                                                        <span class="product-item-content-specs"><?=$loop->details?><?=' '.$loop->created?></span>
+                                                        <span class="product-item-content-price"><?='Price:'.$loop->price?></span>
                                                     </div><!-- /product-item-content -->
 
                                                 </div><!-- /product-item -->
-                                            </li>
-                                            <li>
-                                                <div class="product-item">
-                                                    <div class="product-item-image">
-                                                        <img src="<?php echo base_url(); ?>assets/images/sale-image-001.png">
-                                                    </div><!-- /product-item-image -->
-
-                                                    <div class="product-item-content">
-                                                        <span class="product-item-content-name">Sony HDV</span>
-                                                        <span class="product-item-content-specs">Battery, Flashlight...</span>
-                                                        <span class="product-item-content-price">USD 348</span>
-                                                    </div><!-- /product-item-content -->
-
-                                                </div><!-- /product-item -->
-                                            </li>
-                                            <li>
-                                                <div class="product-item">
-                                                    <div class="product-item-image">
-                                                        <img src="<?php echo base_url(); ?>assets/images/sale-image-001.png">
-                                                    </div><!-- /product-item-image -->
-
-                                                    <div class="product-item-content">
-                                                        <span class="product-item-content-name">Sony HDV</span>
-                                                        <span class="product-item-content-specs">Battery, Flashlight...</span>
-                                                        <span class="product-item-content-price">USD 590</span>
-                                                    </div><!-- /product-item-content -->
-
-                                                </div><!-- /product-item -->
-                                            </li>
-                                            <li>
-                                                <div class="product-item">
-                                                    <div class="product-item-image">
-                                                        <img src="<?php echo base_url(); ?>assets/images/sale-image-001.png">
-                                                    </div><!-- /product-item-image -->
-
-                                                    <div class="product-item-content">
-                                                        <span class="product-item-content-name">Sony HDV</span>
-                                                        <span class="product-item-content-specs">Battery, Flashlight...</span>
-                                                        <span class="product-item-content-price">USD 600</span>
-                                                    </div><!-- /product-item-content -->
-
-                                                </div><!-- /product-item -->
-                                            </li>
+			
+									</li>                                                           <?php }?>
+                                            
+                                            
+                                            
+                                            
+                                           
+                                      
                                         </ul>
                                     </div><!-- /padding -->
                                 </div><!-- /content-section-block -->

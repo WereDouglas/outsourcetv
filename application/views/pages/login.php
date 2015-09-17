@@ -27,7 +27,7 @@
 
                                             <div class="content-login-message">
                                                 <!-- <h2>Send Us a Message</h2> -->
-                                                <form id="station-form" name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/user/login'  method="post">            
+                                                <form id="station-form" class="flat-form flat-form-register wide-form"  name="station-form" enctype="multipart/form-data"  action='<?= base_url(); ?>index.php/user/login'  method="post">            
 
                                                     <div class="form-item">
                                                         <input class="form-element" name="email" id="email" required placeholder="email" type="text" />
@@ -58,7 +58,8 @@
                         </div><!-- /padding -->
                     </div><!-- /content-main -->
 
-                    <?php $this->load->view('templates/adsblock'); ?>
+                 <?php require_once(APPPATH . 'views/pages/adsblock.php'); ?>
+
 
                 </div><!-- /content-block-inner -->
             </div><!-- /content-block -->

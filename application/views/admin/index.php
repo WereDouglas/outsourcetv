@@ -93,11 +93,16 @@
 						<li><a target="frame" href="<?php echo base_url() . "index.php/admin/service"; ?>"><i class="icon-envelope"></i><span class="hidden-tablet"> Service type</span></a></li>
 						<li><a target="frame" href="<?php echo base_url() . "index.php/admin/transaction"; ?>"><i class="icon-tasks"></i><span class="hidden-tablet"> Transaction</span></a></li>
 						<li><a target="frame" href="<?php echo base_url() . "index.php/admin/news"; ?>"><i class="icon-eye-open"></i><span class="hidden-tablet"> News</span></a></li>
-						<li><a target="frame" href="<?php echo base_url() . "index.php/admin/banner"; ?>"><i class="icon-dashboard"></i><span class="hidden-tablet"> /Adverts</span></a></li>
+						<li><a target="frame" href="<?php echo base_url() . "index.php/admin/banner"; ?>"><i class="icon-dashboard"></i><span class="hidden-tablet">Banners & Adverts</span></a></li>
 						
 						<li><a target="frame" href="<?php echo base_url() . "index.php/admin/about"; ?>"><i class="icon-edit"></i><span class="hidden-tablet">About us</span></a></li>
 						<li><a target="frame" href="<?php echo base_url() . "index.php/admin/contact"; ?>"><i class="icon-list-alt"></i><span class="hidden-tablet"> Contact us</span></a></li>
-							</ul>
+					<li><a target="frame" href="<?php echo base_url() . "index.php/admin/mservice"; ?>"><i class="icon-list-alt"></i><span class="hidden-tablet"> Member services</span></a></li>
+					<li><a target="frame" href="<?php echo base_url() . "index.php/admin/mjob"; ?>"><i class="icon-list-alt"></i><span class="hidden-tablet"> Member Jobs</span></a></li>
+					<li><a target="frame" href="<?php echo base_url() . "index.php/admin/mequipment"; ?>"><i class="icon-list-alt"></i><span class="hidden-tablet"> Member Equipments</span></a></li>
+								
+                                        
+                                        </ul>
 				</div>
 			</div>
 			<!-- end: Main Menu -->

@@ -22,12 +22,22 @@
 										<div class="content-section-block">
 											<div class="padding">
 												<ul class="news-list columns-two">
-													<li><a href="<?php echo base_url(); ?>index.php/jobs/view/1"><span>Uganda</span> President Y.K. Museveni picks forms</a></li>
-													<li><a href="#"><span>Uganda</span> Obama in Kenya.</a></li>
-													<li><a href="#"><span>Uganda</span> The Siria War.</a></li>
-													<li><a href="#"><span>Uganda</span> President Y.K. Museveni picks forms</a></li>
-													<li><a href="#"><span>Uganda</span> Obama in Kenya.</a></li>
-													<li><a href="#"><span>Rwanda</span> The Siria War.</a></li>
+                                                                                                                            <?php  foreach ($jobs as $loop) {    ?> 
+                                                            <li><a href="<?php echo base_url(); ?>index.php/home/thisservice/<?=$loop->name?>"><?=$loop->name?></a></li>
+							<li class="odds">
+										<div class="padding">
+											<div class="profile-image">
+                                                                                            <img height="88px" width="84px" src="<?php echo base_url(); ?>uploads/<?=$loop->image;?>">
+											</div>
+											<div class="profile-content">
+												<span class="profile-content-title"><?=$loop->fname.' '.$loop->lname?></span>
+												<span class="profile-content-role"><?=$loop->title.' Created on:'.$loop->created?></span>
+												<span class="profile-content-location"><?=$loop->type.' '.$loop->country?></span>
+                                                                                                <span class="profile-content-location"><?=$loop->details.' '?></span>
+											</div>
+										</div><!-- /padding -->
+									</li>                                                           <?php }?>
+													
 												</ul>
 											</div><!-- /padding -->
 										</div><!-- /content-section-block -->
@@ -37,7 +47,8 @@
 								</div><!-- /padding -->
 							</div><!-- /content-main -->
 
-							<?php $this->load->view('templates/adsblock'); ?>
+							
+                                                        <?php require_once(APPPATH . 'views/pages/adsblock.php'); ?>
 
 						</div><!-- /content-block-inner -->
 					</div><!-- /content-block -->

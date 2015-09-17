@@ -66,11 +66,11 @@
 
 						<?php if ($this->session->userdata('logged_in')) { ?>
 						<li class="headlink page-user">
-							<a href="<?php echo base_url(); ?>index.php/user">My Profile</a>
+							<a href="<?php echo base_url(); ?>index.php/user/profile">My Profile</a>
 							<ul class="sub-menu">
-								<li><a href="<?php echo base_url(); ?>index.php/user/service">Create Service</a></li>
-								<li><a href="<?php echo base_url(); ?>index.php/user/job">Create Job</a></li>
-								<li><a href="<?php echo base_url(); ?>index.php/user/item">Add Item</a></li>
+								<li><a href="<?php echo base_url(); ?>index.php/user/service">My Services</a></li>
+								<li><a href="<?php echo base_url(); ?>index.php/user/job">My Jobs</a></li>
+								<li><a href="<?php echo base_url(); ?>index.php/user/item">Add Item/Equipment</a></li>
 								<li><a href="<?php echo base_url(); ?>index.php/user/logout">Log Out</a></li>
 							</ul>
 						</li>

@@ -77,6 +77,12 @@
                                             <input class="focused" id="lname" name="lname" type="text">
                                         </div>
                                     </div>
+                                           <div class="control-group">
+                                        <label class="control-label">Country</label>
+                                        <div class="controls">
+                                            <input class="focused" id="country" name="country" type="text">
+                                        </div>
+                                    </div>
                                         
                                     </div>
                                     <div class="span4">

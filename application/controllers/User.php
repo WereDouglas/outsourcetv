@@ -31,6 +31,39 @@ class User extends CI_Controller {
 
         $this->load->view('pages/user-add-service', $data);
     }
+      public function profile() {
+          
+        $data['users'] = array();
+        $data['services'] = array();
+        $data['jobs'] = array();
+        $data['memberservices'] = array();
+        $data['banners'] = array();
+        $data['news']= array();
+        
+        $query = $this->Md->query("SELECT * FROM user");        
+        if ($query) { $data['users'] = $query;     }
+        $query = $this->Md->query("SELECT * FROM service");
+        
+        if ($query) { $data['memberservices'] = $query;  }
+        if ($query) { $data['jobs'] = $query;  }
+        $query = $this->Md->query("SELECT * FROM banner");        
+        if ($query) { $data['banners'] = $query; }
+        $query = $this->Md->query("SELECT * FROM news");        
+        if ($query) { $data['news'] = $query; }
+       
+            $query = $this->Md->query("SELECT * FROM banner ORDER BY id DESC");        
+        if ($query) { $data['banners'] = $query; }
+      $userID = $this->session -> userdata('id');
+        $query = $this->Md->query("SELECT * FROM user where id = '".$userID."'");
+
+        if ($query) {
+            $data['profile'] = $query;
+        } else {
+            $data['profile'] = array();
+        }
+
+        $this->load->view('pages/profile', $data);
+    }
 
     public function service() {
 
@@ -199,6 +232,7 @@ class User extends CI_Controller {
         $lname = $this->input->post('lname');
         $email = $this->input->post('email');
         $type = $this->input->post('type');
+        $country = $this->input->post('country');
         $password = $this->input->post('password');
         $password = $password;
         $key = $email;
@@ -216,7 +250,7 @@ class User extends CI_Controller {
         $password = $this->encrypt->encode($password, $key);
         $created = date('Y-m-d');
         $file = $data['file_name'];
-        $user = array('image' => $file, 'fname' => $fname, 'lname' => $lname, 'username' => $username, 'type' => $type, 'password' => $password, 'email' => $email, 'type' => $type, 'active' => 'true', 'created' => date('Y-m-d H:i:s'));
+        $user = array('image' => $file, 'fname' => $fname,'country'=>$country, 'lname' => $lname, 'username' => $username, 'type' => $type, 'password' => $password, 'email' => $email, 'type' => $type, 'active' => 'true', 'created' => date('Y-m-d H:i:s'));
         $id = $this->Md->save($user, 'user');
         if ($id) {
             $this->session->set_flashdata('msg', '<div class="alert alert-error">
@@ -264,11 +298,13 @@ class User extends CI_Controller {
         $transaction = $this->input->post('transaction');
         $price = $this->input->post('price');       
         $details = $this->input->post('details');
+        $name = $this->input->post('name');
+        $country = $this->input->post('country');
         $userID = $this->session -> userdata('id');       
         $created = date('Y-m-d');        
         $file = $data['file_name'];
         
-        $items = array('image' => $file, 'transaction' => $transaction, 'userID'=>$userID,'price' => $price, 'details' => $details, 'created' => date('Y-m-d H:i:s'));
+        $items = array('image' => $file,'name'=>$name ,'country'=>$country,'transaction' => $transaction, 'userID'=>$userID,'price' => $price, 'details' => $details, 'created' => date('Y-m-d H:i:s'));
         $id = $this->Md->save($items, 'equipment');
         if ($id) {
             $this->session->set_flashdata('msg', '<div class="alert alert-error">
@@ -277,7 +313,7 @@ class User extends CI_Controller {
                                                 Registration successful please continue to login</strong>									
 						</div>');
 
-            redirect('home/item', 'refresh');
+            redirect('user/item', 'refresh');
             return;
         } else {
             unlink($data['full_path']);
@@ -335,6 +371,23 @@ class User extends CI_Controller {
         } else {
             $this->session->set_flashdata('msg', '<div class="alert alert-error"> <strong>! invalid password</strong></div>');
             redirect('home/login', 'refresh');
+        }
+    }
+     public function delete() {
+        $this->load->helper(array('form', 'url'));
+        $id = $this->uri->segment(4); 
+        $table = $this->uri->segment(3); 
+        $query = $this->Md->delete($id, $table);
+
+        if ($this->db->affected_rows() > 0) {
+            $msg = '<span style="color:red">Information Deleted </span>';
+            $this->session->set_flashdata('msg', $msg);
+            redirect('home/', 'refresh');
+        } else {
+            $msg = '<span style="color:red">action failed</span>';
+            $this->session->set_flashdata('msg', $msg);
+            redirect('home/', 'refresh');
+            
         }
     }
 

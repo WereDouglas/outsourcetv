@@ -15,7 +15,7 @@
 
 									<section class="content-section content-section-page-title">
 										<div class="padding">
-											<h3 class="page-title">Jobs<span class="read-more-link"><a href="#">Add Job</a></span></h3>
+											
 										</div><!-- /padding -->
 									</section><!-- /content-section -->
 
@@ -27,24 +27,71 @@
 										<div class="content-section-block">
 											<div class="padding">
 
-												<h4 class="article-title">Outsource TV, Kampala Uganda<span>Job No: <?php echo $job_id; ?></span></h4>
-
-												<ul class="summary-list columns-one">
-													<li><span>Job:</span> Camera Man</li>
-													<li><span>Location:</span> Kampala</li>
-													<li><span>Closing Date:</span> Date: 21-08-2015</li>
-												</ul>
-
-												<p>Lorem ipsum dolor sit amet, est doming quaestio comprehensam ne, porro efficiantur pri eu, placerat menandri sententiae eu eam. Qualisque consulatu signiferumque ei pri. No ludus nostrum accusamus has, usu id omnis inermis nusquam. Ad nec labitur nusquam, sed ea regione civibus. Te sea mediocrem facilisis, posse molestie nec in. Ea affert contentiones mea, altera everti inermis ius in.</p>
 												
-												<p>Eu quo laoreet appareat adipisci, dolor oporteat ullamcorper ea qui. Est nihil vituperata ad. Semper audiam qualisque ne pri. Magna tollit noluisse nec te, et aperiri disputando ius. Eum dolor labitur neglegentur ad. Vide referrentur in quo, in zril propriae nec, ornatus pericula has ea.</p>
+                                          
+                                                      <?php
+                                                       if (is_array($profile) && count($profile)) {
+                                                        foreach ($profile as $loop) {
 
-												<p>Adhuc menandri consequuntur vel no, eum dolorem perfecto ea, te sit alia choro propriae. Est delectus principes mnesarchum an, vis sensibus delicata omittantur in, vix omittam explicari ad. Eos ex graece ignota intellegat, inani perpetua eum ex. Ad nibh laudem postulant est, ei quas persius qui. Pri ei labitur fastidii vulputate. Per in mundi habemus indoctum, mea an purto minimum assueverit, quod tale scripserit vis in.</p>
-
-												<p><a class="button" href="#">Apply for Job</a></p>
-
-											</div><!-- /padding -->
-										</div><!-- /content-section-block -->
+                                                            $email = $loop->email;
+                                                            $username = $loop->username;
+                                                            $lname = $loop->lname;
+                                                            $fname = $loop->fname;
+                                                            $name = $loop->lname.' '.$loop->fname;
+                                                            $id = $loop->id;
+                                                            $type = $loop->type;
+                                                            $image = $loop->image;
+                                                            if ($image==""){
+                                                                
+                                                                $image = "placeholder.jpg";
+                                                            }
+                                                              $active = $loop->active;
+                                                                $created = $loop->created;
+                                                            ?>  
+                                                                                            <h1 style="font-size:18px;">  <?php echo $name. '<br> E-mail: '.$email; ?></h1>
+                                                                                          <img style="float:left;" class="avatar" alt="" height="360px" width="260px" src="<?php echo base_url(); ?>uploads/<?php echo $image; ?>">
+                                                                       
+                                                                                          <div id="<?php echo $id; ?>" class="edit_tr">
+                                                                  
+                                                           <div class="profile">
+                                                                           
+                                                              
+                                                                <div class="edit_td">
+                                                                   USERNAME: <span id="username_<?php echo $id; ?>" class="text"><?php echo $username; ?></span>
+                                                                    <input type="text" value="<?php echo $username; ?>" class="editbox" id="username_input_<?php echo $id; ?>"
+                                                                </div>
+                                                                           <br>
+                                                                <div class="edit_td">
+                                                                   LAST NAME: <span id="lname_<?php echo $id; ?>" class="text"><?php echo $lname; ?></span>
+                                                                    <input type="text" value="<?php echo $lname; ?>" class="editbox" id="lname_input_<?php echo $id; ?>"
+                                                                </div>  <br>
+                                                                <div class="edit_td">
+                                                                   FIRST NAME: <span id="fname_<?php echo $id; ?>" class="text"><?php echo $fname; ?></span>
+                                                                    <input type="text" value="<?php echo $fname; ?>" class="editbox" id="fname_input_<?php echo $id; ?>"
+                                                                </div>     <br>
+                                                                 <div class="edit_td">
+                                                                   MEMBERSHIP: <span id="type_<?php echo $id; ?>" class="text"><?php echo $type; ?></span>
+                                                                    <input type="text" value="<?php echo $type; ?>" class="editbox" id="type_input_<?php echo $id; ?>"
+                                                                </div>     <br>
+                                                                 <div class="edit_td">
+                                                                   STATUS <span id="active_<?php echo $id; ?>" class="text"><?php echo $active; ?></span>
+                                                                    <input type="text" value="<?php echo $active; ?>" class="editbox" id="active_input_<?php echo $id; ?>"
+                                                                </div>   <br>
+                                                                 <div class="edit_td">
+                                                                    <span id="created_<?php echo $id; ?>" class="text"><?php echo $created; ?></span>
+                                                                    <input type="text" value="<?php echo $created; ?>" class="editbox" id="created_input_<?php echo $id; ?>"
+                                                                </div>  <br>   
+                                                                </div>
+                                                            
+                                                            </div>
+                                                               <?php
+                                                        }
+                                                    }
+                                                    ?>
+                                                            
+                                                            
+						
+									</div><!-- /content-section-block -->
 
 
 
@@ -62,7 +109,7 @@
 								</div><!-- /padding -->
 							</div><!-- /content-main -->
 
-							<?php $this->load->view('templates/adsblock'); ?>
+							<?php require_once(APPPATH . 'views/pages/adsblock.php'); ?>
 
 						</div><!-- /content-block-inner -->
 					</div><!-- /content-block -->
@@ -72,3 +119,88 @@
 		</section>
 
 <?php require_once(APPPATH . 'views/pages/footer.php'); ?>
+
+<script src="<?= base_url(); ?>js/jquery-1.9.1.min.js"></script>
+<script src="<?= base_url(); ?>js/bootstrap.min.js"></script>
+<script src="<?= base_url(); ?>js/jquery.min.js"></script>
+
+        
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
+        $(".editbox").hide();
+
+        $(".edit_tr").click(function ()
+        {
+            var ID = $(this).attr('id');
+            $("#fname" + ID).hide();
+            $("#fname_input_" + ID).show();
+            
+            $("#username" + ID).hide();
+            $("#username_input_" + ID).show();
+
+            $("#lname" + ID).hide();
+            $("#lname_input_" + ID).show();
+            
+            $("#active" + ID).hide();
+            $("#active_input_" + ID).show();
+
+            $("#contact" + ID).hide();
+            $("#contact_input_" + ID).show();
+
+
+           
+
+        }).change(function ()
+        {
+            var ID = $(this).attr('id');
+            var fname = $("#fname_input_" + ID).val();
+            var username = $("#username_input_" + ID).val();
+            var lname = $("#lname_input_" + ID).val();          
+               var active = $("#active_input_" + ID).val();
+
+
+            var dataString = 'id=' + ID + '&fname=' + fname + '&lname=' + lname + '&username=' + username+ '&active=' + active;
+            $("#fname_" + ID).html('<img src="<?= base_url(); ?>img/loading.gif" />'); // Loading image
+            $("#lname_" + ID).html('<img src="<?= base_url(); ?>img/loading.gif" />'); // Loading image
+            $("#active_" + ID).html('<img src="<?= base_url(); ?>img/loading.gif" />'); // Loading image
+           
+            if (fname.length > 0 && lname.length > 0)
+            {
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url() . "index.php/admin/user/update/"; ?>",
+                    data: dataString,
+                    cache: false,
+                    success: function (html)
+                    {
+                        $("#fname_" + ID).html(fname);
+                        $("#lname_" + ID).html(lname);
+                        $("#username_" + ID).html(username);
+                        $("#active_" + ID).html(active);
+                     
+                    }
+                });
+            }
+            else
+            {
+                alert('Enter something.');
+            }
+
+        });
+
+        // Edit input box click action
+        $(".editbox").mouseup(function ()
+        {
+            return false
+        });
+
+        // Outside click action
+        $(document).mouseup(function ()
+        {
+            $(".editbox").hide();
+            $(".text").show();
+        });
+
+    });
+</script>

@@ -262,7 +262,7 @@
 	}
 
 	.columns-two li {
-		width: 49%;
+		width: 81%;
 		display: inline-block;
 	}
 
@@ -484,7 +484,7 @@
 
 	.profile-content {
 		height: 100%;
-		width: 123px;
+		width: 78%;
 		float: left;
 	}
 
@@ -664,7 +664,41 @@
 	display: inline-block;
 	float: left;
 }
+.edit_td{
+    float: right;
+    font-size: 14px;
+    
+}
 
 
-
+.edit_td input {
+    width: 150px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.profile {
+   margin-left: 10px;
+     float: right;
+}
+.editbox
+{
+display:none
+}
+td
+{
+padding:5px;
+}
+.editbox
+{
+font-size:14px;
+width:270px;
+background-color:#ffffcc;
+border:solid 1px #000;
+padding:4px;
+}
+.edit_tr:hover
+{
+background:url(edit.png) right no-repeat #80C8E5;
+cursor:pointer;
+}
 

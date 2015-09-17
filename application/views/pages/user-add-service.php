@@ -118,7 +118,11 @@
                                                                          <th><?=$loop->service?></th>
                                                                             <th><?=$loop->active?></th>
                                                                           <th><?=$loop->created?></th>
-                                                                            <th></th>
+                                                                            <th>
+                                                                                
+                                                                                <a class="btn btn-danger" href="<?php echo base_url() . "index.php/user/delete/memberservice/" .$loop->id; ?>">
+                                                                                    <i class="halflings-icon white trash">Remove</i> </a>
+								</th>
                                                             </tr>
                                                                <?php
                                                         }
